@@ -1,4 +1,3 @@
-alert("JS chargé");
 const track = document.getElementById("track");
 const thumb = document.getElementById("thumb");
 const fill = document.getElementById("fill");
