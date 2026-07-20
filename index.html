@@ -3,41 +3,45 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tilt</title>
+    <title>Drift it</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
-<div class="app">
+    <div class="app">
 
+        <h1>Drift it</h1>
 
-    <h1>Tilt</h1>
+        <div id="game">
 
+            <div id="track">
 
-    <canvas id="canvas"></canvas>
+                <div id="fill"></div>
 
+                <div id="thumb"></div>
 
-    <div id="result">
+            </div>
 
-        <p>
-            On va voir si t'as l'œil.<br>
-            Cible : <span class="small-highlight" id="target"></span>°.
-        </p>
+        </div>
+
+        <div id="result">
+
+            <p>
+                On va voir si t'as l'œil.<br>
+                Cible : <span class="small-highlight" id="target"></span>%.
+            </p>
+
+        </div>
 
     </div>
 
-
-</div>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 

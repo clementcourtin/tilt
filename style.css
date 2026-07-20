@@ -1,32 +1,31 @@
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 
 
 body {
 
-    margin:0;
+    margin: 0;
 
-    height:100vh;
+    height: 100vh;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
-    background:#FBFBFD;
-
+    background: #FBFBFD;
 
     font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
-    Helvetica,
-    Arial,
-    sans-serif;
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        Helvetica,
+        Arial,
+        sans-serif;
 
 }
 
@@ -34,9 +33,9 @@ body {
 
 .app {
 
-    width:350px;
+    width: 350px;
 
-    text-align:center;
+    text-align: center;
 
 }
 
@@ -44,51 +43,122 @@ body {
 
 h1 {
 
-    font-size:44px;
+    font-size: 44px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    letter-spacing:-1.5px;
+    letter-spacing: -1.5px;
 
-    color:#1D1D1F;
+    color: #1D1D1F;
 
-    margin:0 0 35px 0;
+    margin: 0 0 35px 0;
 
 }
 
 
 
-canvas {
+/* ---------- Zone de jeu ---------- */
 
-    display:block;
+#game {
 
-    width:350px;
+    width: 350px;
+    height: 350px;
 
-    height:350px;
+    background: white;
 
-    background:#FFFFFF;
-
-    border-radius:28px;
+    border-radius: 28px;
 
     box-shadow:
+        0 8px 30px rgba(0,0,0,.06);
 
-    0 8px 30px rgba(0,0,0,0.06);
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
 }
 
 
+
+/* ---------- Slider ---------- */
+
+#track {
+
+    width: 260px;
+
+    height: 8px;
+
+    background: #E5E5EA;
+
+    border-radius: 999px;
+
+    position: relative;
+
+}
+
+
+
+#fill {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 0;
+
+    height: 100%;
+
+    background: #007AFF;
+
+    border-radius: 999px;
+
+}
+
+
+
+#thumb {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 50%;
+
+    width: 24px;
+
+    height: 24px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: white;
+
+    border: 3px solid #007AFF;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.15);
+
+}
+
+
+
+/* ---------- Zone résultat ---------- */
 
 #result {
 
-    height:150px;
+    height: 150px;
 
-    margin-top:25px;
+    margin-top: 25px;
 
-    display:flex;
+    display: flex;
 
-    justify-content:center;
+    justify-content: center;
 
-    align-items:center;
+    align-items: center;
 
 }
 
@@ -96,17 +166,17 @@ canvas {
 
 #result p {
 
-    color:#1D1D1F;
+    color: #1D1D1F;
 
-    font-size:21px;
+    font-size: 21px;
 
-    font-weight:400;
+    font-weight: 400;
 
-    letter-spacing:-0.25px;
+    letter-spacing: -0.25px;
 
-    line-height:1.5;
+    line-height: 1.5;
 
-    margin:0;
+    margin: 0;
 
 }
 
@@ -114,18 +184,26 @@ canvas {
 
 .small-highlight {
 
-    font-weight:600;
+    font-weight: 600;
 
 }
 
 
 
 .score {
-    color:#007AFF;
-    font-size:45px;
-    font-weight:700;
-    letter-spacing:-1px;
-    line-height:1;
-    margin-bottom:20px;
-    transform: translateY(10px);
+
+    color: #007AFF;
+
+    font-size: 45px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+
+    line-height: 1;
+
+    margin-top: 15px;
+
+    margin-bottom: 20px;
+
 }

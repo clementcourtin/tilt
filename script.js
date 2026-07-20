@@ -1,189 +1,122 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-canvas.width = 350;
-canvas.height = 350;
+const track = document.getElementById("track");
+const thumb = document.getElementById("thumb");
+const fill = document.getElementById("fill");
 
 
-// Angle demandé
-let targetAngle = Math.floor(Math.random() * 120) + 30;
+// Cible
 
-document.getElementById("target").textContent = targetAngle;
+let target = Math.floor(Math.random() * 81) + 10;
 
-
-
-const center = {
-    x: 175,
-    y: 175
-};
+document.getElementById("target").textContent = target;
 
 
-let point = null;
-let drawing = false;
+
+let value = 0;
+let dragging = false;
 let finished = false;
 
 
 
-function draw() {
 
-    ctx.clearRect(
+
+function update(clientX){
+
+    let rect = track.getBoundingClientRect();
+
+    let x = clientX - rect.left;
+
+    x = Math.max(
         0,
-        0,
-        canvas.width,
-        canvas.height
+        Math.min(
+            rect.width,
+            x
+        )
     );
 
-
-    // ligne de référence
-	ctx.strokeStyle = "#1D1D1F";
-	ctx.lineWidth = 3;
-	ctx.lineCap = "round";
-	ctx.lineJoin = "round";
-
-    ctx.beginPath();
-
-    ctx.moveTo(
-        center.x,
-        center.y
-    );
-
-    ctx.lineTo(
-        300,
-        center.y
-    );
-
-    ctx.stroke();
+    value = x / rect.width * 100;
 
 
+    thumb.style.left = x + "px";
 
-    // ligne du joueur
-    if(point){
-
-		ctx.strokeStyle = "#007AFF";
-		ctx.lineWidth = 4;
-		ctx.lineCap = "round";
-		ctx.lineJoin = "round";
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-            center.x,
-            center.y
-        );
-
-        ctx.lineTo(
-            point.x,
-            point.y
-        );
-
-        ctx.stroke();
-
-    }
-
-
-
-    // point central
-
-    ctx.fillStyle="#1D1D1F";
-
-    ctx.beginPath();
-
-	ctx.arc(
-		center.x,
-		center.y,
-		7,
-		0,
-		Math.PI*2
-	);
-
-    ctx.fill();
+    fill.style.width = x + "px";
 
 }
 
 
 
 
-function getPosition(e){
-
-    let rect = canvas.getBoundingClientRect();
-
-    let x;
-    let y;
-
-
-    if(e.touches){
-
-        x = e.touches[0].clientX - rect.left;
-        y = e.touches[0].clientY - rect.top;
-
-    } 
-    
-    else {
-
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
-
-    }
-
-
-    return {
-        x,
-        y
-    };
-
-}
-
-
-
-
-// Début du geste
 
 function start(e){
 
     e.preventDefault();
 
-    if(finished) return;
+    if(finished)
+        return;
 
 
-    drawing = true;
+    dragging = true;
 
-    point = getPosition(e);
 
-    draw();
+    if(e.touches){
+
+        update(
+            e.touches[0].clientX
+        );
+
+    }
+
+    else{
+
+        update(
+            e.clientX
+        );
+
+    }
 
 }
 
 
 
 
-// Mouvement
 
 function move(e){
 
     e.preventDefault();
 
-    if(!drawing || finished)
+    if(!dragging || finished)
         return;
 
 
-    point = getPosition(e);
+    if(e.touches){
 
-    draw();
+        update(
+            e.touches[0].clientX
+        );
+
+    }
+
+    else{
+
+        update(
+            e.clientX
+        );
+
+    }
 
 }
 
 
 
 
-// Relâchement
 
 function end(){
 
-    if(!drawing || finished)
+    if(!dragging || finished)
         return;
 
 
-    drawing = false;
+    dragging = false;
+
     finished = true;
 
 
@@ -195,72 +128,40 @@ function end(){
 
 
 
-canvas.addEventListener(
-"mousedown",
-start
+track.addEventListener(
+    "mousedown",
+    start
 );
 
-
-canvas.addEventListener(
-"mousemove",
-move
+window.addEventListener(
+    "mousemove",
+    move
 );
 
-
-canvas.addEventListener(
-"mouseup",
-end
-);
-
-
-
-
-canvas.addEventListener(
-"touchstart",
-start,
-{passive:false}
-);
-
-
-canvas.addEventListener(
-"touchmove",
-move,
-{passive:false}
-);
-
-
-canvas.addEventListener(
-"touchend",
-end
+window.addEventListener(
+    "mouseup",
+    end
 );
 
 
 
+track.addEventListener(
+    "touchstart",
+    start,
+    {passive:false}
+);
 
+window.addEventListener(
+    "touchmove",
+    move,
+    {passive:false}
+);
 
-function calculateAngle(){
+window.addEventListener(
+    "touchend",
+    end
+);
 
-
-    let dx = point.x - center.x;
-
-    let dy = center.y - point.y;
-
-
-    let angle =
-        Math.atan2(dy, dx)
-        *
-        180
-        /
-        Math.PI;
-
-
-    if(angle < 0)
-        angle += 360;
-
-
-    return angle;
-
-}
 
 
 
@@ -268,20 +169,15 @@ function calculateAngle(){
 
 function revealScore(){
 
-
-    let angle = calculateAngle();
-
-
-    let error =
-        Math.abs(angle - targetAngle);
+    let error = Math.abs(
+        value - target
+    );
 
 
-
-    let score =
-        Math.max(
-            0,
-            100 - error * 2
-        );
+    let score = Math.max(
+        0,
+        100 - error * 2
+    );
 
 
 
@@ -291,15 +187,20 @@ function revealScore(){
     <div>
 
         <div class="score">
-            ${score.toFixed(1)}%
-        </div>
 
+            ${score.toFixed(1)}%
+
+        </div>
 
         <p>
 
-            Tu visais <span class="small-highlight">${targetAngle}°</span>.<br>
+            Tu visais
+            <span class="small-highlight">${target}%</span>.
 
-            Tu as fait <span class="small-highlight">${angle.toFixed(1)}°</span>.
+            <br>
+
+            Tu as glissé jusqu'à
+            <span class="small-highlight">${value.toFixed(1)}%</span>.
 
             <br><br>
 
@@ -308,16 +209,16 @@ function revealScore(){
         </p>
 
     </div>
-    `;
 
+    `;
 
 }
 
 
 
 
-function message(score){
 
+function message(score){
 
     if(score >= 99)
         return "Ok... c'est presque louche.";
@@ -331,8 +232,3 @@ function message(score){
     return "On va faire comme si c'était voulu.";
 
 }
-
-
-
-
-draw();
