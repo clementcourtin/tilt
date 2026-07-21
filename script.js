@@ -65,22 +65,44 @@ function growRipple(){
 
     if(!pressing) return;
 
-    const elapsed=(performance.now()-startTime)/1000;
 
-    const scale=1+elapsed*6;
+    const elapsed =
+        (performance.now()-startTime)/1000;
 
-    const opacity=Math.max(
-        .08-elapsed*.008,
-        .015
-    );
 
-    ripple.style.transform=
+    // croissance du cercle
+
+    const scale =
+        1 + elapsed * 5;
+
+
+
+    // intensité du bleu qui augmente
+
+    const intensity =
+        Math.min(
+            elapsed / targetTime,
+            1
+        );
+
+
+    const opacity =
+        0.05 + intensity * 0.35;
+
+
+
+    ripple.style.transform =
         `translate(-50%,-50%) scale(${scale})`;
 
-    ripple.style.background=
+
+
+    ripple.style.background =
         `rgba(0,122,255,${opacity})`;
 
-    animation=requestAnimationFrame(growRipple);
+
+
+    animation =
+        requestAnimationFrame(growRipple);
 
 }
 
