@@ -1,31 +1,34 @@
 * {
-    box-sizing: border-box;
+
+    box-sizing:border-box;
+
 }
 
 
 
 body {
 
-    margin: 0;
+    margin:0;
 
-    height: 100vh;
+    height:100vh;
 
-    display: flex;
+    display:flex;
 
-    justify-content: center;
+    justify-content:center;
 
-    align-items: center;
+    align-items:center;
 
-    background: #FBFBFD;
+    background:#FBFBFD;
+
 
     font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        Helvetica,
-        Arial,
-        sans-serif;
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    Helvetica,
+    Arial,
+    sans-serif;
 
 }
 
@@ -33,9 +36,9 @@ body {
 
 .app {
 
-    width: 350px;
+    width:350px;
 
-    text-align: center;
+    text-align:center;
 
 }
 
@@ -43,122 +46,105 @@ body {
 
 h1 {
 
-    font-size: 44px;
+    font-size:44px;
 
-    font-weight: 700;
+    font-weight:700;
 
-    letter-spacing: -1.5px;
+    letter-spacing:-1.5px;
 
-    color: #1D1D1F;
+    color:#1D1D1F;
 
-    margin: 0 0 35px 0;
+    margin:0 0 35px 0;
 
 }
 
 
 
-/* ---------- Zone de jeu ---------- */
+/* Zone de jeu */
 
 #game {
 
-    width: 350px;
-    height: 350px;
+    width:350px;
 
-    background: white;
+    height:350px;
 
-    border-radius: 28px;
+    background:#FFFFFF;
 
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.06);
+    border-radius:28px;
 
-    display: flex;
+    position:relative;
 
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-
-/* ---------- Slider ---------- */
-
-#track {
-
-    width: 260px;
-
-    height: 8px;
-
-    background: #E5E5EA;
-
-    border-radius: 999px;
-
-    position: relative;
-
-}
-
-
-
-#fill {
-
-    position: absolute;
-
-    left: 0;
-
-    top: 0;
-
-    width: 0;
-
-    height: 100%;
-
-    background: #007AFF;
-
-    border-radius: 999px;
-
-}
-
-
-
-#thumb {
-
-    position: absolute;
-
-    left: 0;
-
-    top: 50%;
-
-    width: 24px;
-
-    height: 24px;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background: white;
-
-    border: 3px solid #007AFF;
+    overflow:hidden;
 
     box-shadow:
-        0 4px 12px rgba(0,0,0,.15);
+
+    0 8px 30px rgba(0,0,0,0.06);
 
 }
 
 
 
-/* ---------- Zone résultat ---------- */
+/* Zone tactile */
+
+#touch-area {
+
+    position:absolute;
+
+    inset:0;
+
+    touch-action:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+
+
+/* Encre */
+
+.ink {
+
+    position:absolute;
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+
+    background:
+
+    rgba(0,122,255,0.12);
+
+
+    filter:blur(25px);
+
+
+    transform:
+
+    translate(-50%,-50%)
+
+    scale(1);
+
+
+    pointer-events:none;
+
+}
+
+
 
 #result {
 
-    height: 150px;
+    height:150px;
 
-    margin-top: 25px;
+    margin-top:25px;
 
-    display: flex;
+    display:flex;
 
-    justify-content: center;
+    justify-content:center;
 
-    align-items: center;
+    align-items:center;
 
 }
 
@@ -166,17 +152,17 @@ h1 {
 
 #result p {
 
-    color: #1D1D1F;
+    color:#1D1D1F;
 
-    font-size: 21px;
+    font-size:21px;
 
-    font-weight: 400;
+    font-weight:400;
 
-    letter-spacing: -0.25px;
+    letter-spacing:-0.25px;
 
-    line-height: 1.5;
+    line-height:1.5;
 
-    margin: 0;
+    margin:0;
 
 }
 
@@ -184,7 +170,7 @@ h1 {
 
 .small-highlight {
 
-    font-weight: 600;
+    font-weight:600;
 
 }
 
@@ -192,18 +178,18 @@ h1 {
 
 .score {
 
-    color: #007AFF;
+    color:#007AFF;
 
-    font-size: 45px;
+    font-size:45px;
 
-    font-weight: 700;
+    font-weight:700;
 
-    letter-spacing: -1px;
+    letter-spacing:-1px;
 
-    line-height: 1;
+    line-height:1;
 
-    margin-top: 15px;
+    margin-top:15px;
 
-    margin-bottom: 20px;
+    margin-bottom:20px;
 
 }
